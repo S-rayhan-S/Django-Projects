@@ -9,7 +9,7 @@
     <title>{% block title_block %}{{Blog}}{% endblock title_block %}</title>
 </head>
 
-<body class='bg-teal-500'>
+<body class="bg-teal-500">
 
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -17,47 +17,36 @@
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a href="{% url 'home' %}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">home</a>
+                            <a href="{% url 'home' %}" class="flex items-center justify-center rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">home</a>
 
-                            {% comment %} {% if user.is_authenticated %} {% endcomment %}
-                                <div class="relative inline-block text-left">
-                                    <div>
-                                        <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                                            {{user.username}}
-                                            <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                                                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    
-                                </div>
-                            {% comment %} {% else %} {% endcomment %}
-                                {% comment %} <a href="{% url 'App_Login:signup' %}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">signup</a> {% endcomment %}
-                                
-                                {% if user.is_authenticated %}
-                                <a href="{% url 'App_Login:logout' %}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">logout</a>
-                                {% else %}
-                                <a href="{% url 'App_Login:login' %}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">login</a>
-                                {% endif %}
-                            {% comment %} {% endif %}  {% endcomment %}
-
-                            {% comment %} This section is for profile pic  {% endcomment %}
-                            {% if user.user_profile.profile_pic  %}
-                                <a href=" {% url "App_Login:profile" %}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"><img src="media/{{user.user_profile.profile_pic}}" alt=""></a>
+                            {% if user.is_authenticated %}
+                            <div class="relative inline-block text-left">
+                                <button type="button" class="flex items-center justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                    {{user.username}}
+                                    <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <a href="{% url 'App_Login:logout' %}" class="flex items-center justify-center rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">logout</a>
                             {% else %}
-                                <a href="{% url "App_Login:profile" %}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-                                    
+                            <a href="{% url 'App_Login:login' %}" class="flex items-center justify-center rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">login</a>
+                            {% endif %}
+
+                            {% if user.user_profile.profile_pic %}
+                                <a href="{% url 'App_Login:profile' %}" class="flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                                    <img src="/media/{{ user.user_profile.profile_pic }}" alt="Profile img" class="w-10 h-10 rounded-full object-cover">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'App_Login:profile' %}" class="flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
                                     <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                         <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                     </div>
-
                                 </a>
                             {% endif %}
-                            
-                            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dummy2</a>
 
-                            {% comment %} <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dummy2</a> {% endcomment %}
+                            <a href="#" class="flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dummy2</a>
+
                         </div>
                     </div>
                 </div>
@@ -97,6 +86,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
