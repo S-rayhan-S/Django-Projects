@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<h2>Sign up here</h2>
+<form method="POST" enctype='multipart/form-data' class="ml-14 mt-10">
+    {{form|crispy }}
+    {% csrf_token %}
+     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">submit</button>
+    </form>
+
+    <div class="log_in">
+        <p>Have an account? <a href="{% url 'App_Login:login' %}">Log in</a></p>
+      </div>
+{% endblock body_block %}
+
+
+
+
+
+
+
+
+
+
